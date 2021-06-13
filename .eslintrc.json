@@ -13,8 +13,9 @@
     },
     "rules": {
         "no-console": "off",
-        "prettier/prettier": "error",
-        "function-paren-newline": ["error", "never"]
+        "prettier/prettier": "error"
+        // "function-paren-newline": ["error", "never"],
+        // "no-unused-vars": "error"
         // "function-paren-newline": ["error", { "minItems": 3 }]
     }
 }

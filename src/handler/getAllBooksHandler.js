@@ -2,6 +2,7 @@ const books = require('../books');
 
 // handler untuk menampilkan buku by name, reading, finished dan all books
 const getAllBooksHandler = (request, h) => {
+  // dapatkan nilai name, reading dan finished
   const { name, reading, finished } = request.query;
 
   let filterBooks = books;
@@ -14,11 +15,13 @@ const getAllBooksHandler = (request, h) => {
   }
 
   // filter by reading || buku yang sedang dibaca dan tidak
+  // reading= 1 : true || reading= 0 : false
   if (reading !== undefined) {
     filterBooks = filterBooks.filter((book) => book.reading == reading);
   }
 
   // filter by finished || buku yang sudah selesai dibaca dan belum
+  // finished=1 : true || finished= 0 : false
   if (finished !== undefined) {
     filterBooks = filterBooks.filter((book) => book.finished == finished);
   }
@@ -30,6 +33,7 @@ const getAllBooksHandler = (request, h) => {
     publisher: book.publisher,
   }));
 
+  // response saat berhasil di filter dan jika tidak tampilkan semua data buku
   const response = h.response({
     status: 'success',
     data: {

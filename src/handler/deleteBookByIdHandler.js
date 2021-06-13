@@ -1,4 +1,3 @@
-const { nanoid } = require('nanoid');
 const books = require('../books');
 
 // Handler untuk menghapus buku
