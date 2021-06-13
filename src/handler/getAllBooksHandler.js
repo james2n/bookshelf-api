@@ -33,7 +33,7 @@ const getAllBooksHandler = (request, h) => {
     publisher: book.publisher,
   }));
 
-  // response saat berhasil di filter dan jika tidak tampilkan semua data buku
+  // response dan tampilkan data saat berhasil di filter dan jika tidak tampilkan semua data buku
   const response = h.response({
     status: 'success',
     data: {
