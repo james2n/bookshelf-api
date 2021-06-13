@@ -1,11 +1,3 @@
-// const {
-//   addBookHandler,
-//   getAllBooksHandler,
-//   getBookByIdHandler,
-//   editBookByIdHandler,
-//   deleteBookByIdHandler,
-// } = require('./handler');
-
 const { addBookHandler } = require('./handler/addBookHandler');
 const { getAllBooksHandler } = require('./handler/getAllBooksHandler');
 const { getBookByIdHandler } = require('./handler/getBookByIdHandler');
@@ -13,34 +5,34 @@ const { editBookByIdHandler } = require('./handler/editBookByIdHandler');
 const { deleteBookByIdHandler } = require('./handler/deleteBookByIdHandler');
 
 const routes = [
-  // menyimpan buku
+  // untuk menambah buku
   {
     method: 'POST',
     path: '/books',
     handler: addBookHandler,
   },
-  // menampilkan seluruh buku
+  // untuk menampilkan seluruh buku atau berdasarkan query request
   {
     method: 'GET',
     path: '/books',
     handler: getAllBooksHandler,
   },
-  // menampilkan detail buku berdasarkan Id
+  // untuk menampilkan detail buku berdasarkan Id
   {
     method: 'GET',
-    path: '/books/{id}',
+    path: '/books/{bookId}',
     handler: getBookByIdHandler,
   },
-  // mengubah data buku berdasarkan Id
+  // untuk mengubah data buku berdasarkan Id
   {
     method: 'PUT',
-    path: '/books/{id}',
+    path: '/books/{bookId}',
     handler: editBookByIdHandler,
   },
-  // menghapus data buku berdasarkan Id
+  // untuk menghapus data buku berdasarkan Id
   {
     method: 'DELETE',
-    path: '/books/{id}',
+    path: '/books/{bookId}',
     handler: deleteBookByIdHandler,
   },
 ];

@@ -1,14 +1,15 @@
 const { nanoid } = require('nanoid');
-const _ = require('lodash');
 const books = require('../books');
 
-// menampikan detail buku
-
+// Handler untuk menampilkan detail buku by ID
 const getBookByIdHandler = (request, h) => {
-  const { id } = request.params;
+  // dapatkan nilai id
+  const { bookId } = request.params;
 
-  const book = books.filter((b) => b.id === id)[0];
+  // filter id yang didapatkan dari request
+  const book = books.filter((book) => book.id === bookId)[0];
 
+  // response saat berhasil dan tampilkan data buku
   if (book !== undefined) {
     return {
       status: 'success',
@@ -18,6 +19,7 @@ const getBookByIdHandler = (request, h) => {
     };
   }
 
+  // respons saat tidak berhasil
   const response = h.response({
     status: 'fail',
     message: 'Buku tidak ditemukan',

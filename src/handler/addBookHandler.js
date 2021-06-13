@@ -1,9 +1,9 @@
 const { nanoid } = require('nanoid');
-const _ = require('lodash');
 const books = require('../books');
 
-// menambah buku
+// Handler untuk tambah buku
 const addBookHandler = (request, h) => {
+  // menangkap request dari client "request.payload"
   const {
     name,
     year,
@@ -17,15 +17,13 @@ const addBookHandler = (request, h) => {
   } = request.payload;
 
   const id = nanoid(16);
-  let finished = false;
-  if (pageCount === readPage) {
-    finished = true;
-  }
+  const finished = pageCount == readPage;
+
   const insertedAt = new Date().toISOString();
   const updatedAt = insertedAt;
 
-  // tidak input name
-  if (name == null) {
+  // tidak ada input name
+  if (name === undefined) {
     const response = h.response({
       status: 'fail',
       message: 'Gagal menambahkan buku. Mohon isi nama buku',
@@ -47,6 +45,7 @@ const addBookHandler = (request, h) => {
 
   // proses insert buku
   const newBook = {
+    id,
     name,
     year,
     author,
@@ -55,17 +54,17 @@ const addBookHandler = (request, h) => {
     pageCount,
     readCount,
     readPage,
-    reading,
-    id,
     finished,
+    reading,
     insertedAt,
     updatedAt,
   };
   books.push(newBook);
 
+  // mengecek apakah buku sudah berhasil ditambahkan
   const isSuccess = books.filter((book) => book.id === id).length > 0;
 
-  // data berhasil
+  // response saat buku berhasil ditambahkan
   if (isSuccess) {
     const response = h.response({
       status: 'success',
@@ -78,7 +77,7 @@ const addBookHandler = (request, h) => {
     return response;
   }
 
-  // tidak ada data
+  // rsponse saat gagal tambah buku
   const response = h.response({
     status: 'error',
     message: 'Buku gagal ditambahkan',

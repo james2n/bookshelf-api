@@ -1,14 +1,16 @@
 const { nanoid } = require('nanoid');
-const _ = require('lodash');
 const books = require('../books');
 
-// menghapus buku
-
+// Handler untuk menghapus buku
 const deleteBookByIdHandler = (request, h) => {
-  const { id } = request.params;
+  // dapatkan nilai id
+  const { bookId } = request.params;
 
-  const index = books.findIndex((book) => book.id === id);
+  // dapatkan index sesuai id yang di dapat
+  const index = books.findIndex((book) => book.id === bookId);
 
+  // pengecekan nilai index, tidak boleh nilai index -1
+  // gunakan array splice() untuk menghapus array berdasarkan index
   if (index !== -1) {
     books.splice(index, 1);
     const response = h.response({
@@ -19,6 +21,7 @@ const deleteBookByIdHandler = (request, h) => {
     return response;
   }
 
+  // response saat gagal dihapus
   const response = h.response({
     status: 'fail',
     message: 'Buku gagal dihapus. Id tidak ditemukan',
