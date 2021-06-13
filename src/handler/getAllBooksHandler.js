@@ -5,6 +5,7 @@ const getAllBooksHandler = (request, h) => {
   // dapatkan nilai name, reading dan finished
   const { name, reading, finished } = request.query;
 
+  // assign nilai books pada let filterBooks agar nilai dapat berubah
   let filterBooks = books;
 
   // filter by name
